@@ -8,7 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { ChatPage } from '../pages/chat/chat';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpModule,HttpClient } from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 /*var config = {
     apiKey: "AIzaSyAbFFCl02j4sntP94t6T1c_8BFKA199RMA",
@@ -30,7 +30,6 @@ import { HttpModule,HttpClient } from '@angular/http';
     BrowserModule,
     IonicModule.forRoot(MyApp), 
 	HttpModule,
-	HttpClient
   ],
   bootstrap: [IonicApp],
   entryComponents: [
