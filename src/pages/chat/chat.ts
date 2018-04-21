@@ -21,7 +21,6 @@ export class ChatPage {
 	
 	  messages :any =[];
 	  message :any =[];
-	  stage :any;
 	  mobileno :any;
 	  stage:any = 1;
 	  
