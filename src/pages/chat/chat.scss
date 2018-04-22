@@ -6,7 +6,7 @@ page-chat {
     background: color($colors, 'primary');
     margin: 5px;
     color: white;
-    border-radius: 3px;
+    border-radius: 10px;
   }
   .innerMessage.messageRight {
     background: color($colors, 'secondary');
@@ -18,7 +18,7 @@ page-chat {
   .message {
     font-size: 120%;
   }
-  .elem button {
+ /* .elem button {
     border-radius: 0;
     margin: 0;
     position: absolute;
@@ -26,7 +26,7 @@ page-chat {
     left: 0;
     width: 100%;
     height: 100%;
-  }
+  } */
   .elem {
     position: relative;
     min-width: 50px;
@@ -54,10 +54,10 @@ page-chat {
     clear: both;
   }
   .messageLeft {
-    float: left;
+    float: left; border-top-left-radius: 0;
   }
   .messageRight {
-    float: right;
+    float: right; border-top-right-radius: 0;
   }
 
   .message.special .innerMessage .messageContent{
@@ -89,11 +89,12 @@ page-chat {
   }
 
 
-    ion-spinner  {
+  ion-spinner  {
   width: 28px;
   height: 28px;
   stroke: #444;
   fill: #222;
 }
+
 
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-//import { Databaseservice } from "../../providers/databaseservice/databaseservice";
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { NavController, NavParams } from 'ionic-angular';
+//import { AngularFirestore } from 'angularfire2/firestore';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import * as $ from "jquery";
 
 
 /**
@@ -12,83 +12,122 @@ import 'rxjs/add/operator/map';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-chat',
   templateUrl: 'chat.html',
 })
 export class ChatPage {
-	
-	  messages :any =[];
-	  message :any =[];
-	  mobileno :any;
-	  stage:any = 1;
-	  
+	messages :any =[];
+	message:any=[];
+	username ="";
+	button="";
 _chatSubscription;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-	 /* this.http.get('http://hrsenterprises.in/kisan/api.php?step=1&lang=en').subscribe(data => {
-		this.welcome = data.json();
-		console.log(data.json());
-	});*/
-   this.botqueries();
-    
-  
-  }
-  
-   sendMessage()
-  {
-	  this.messages.push({
-	msg : this.message,
-	owner:'user'
-		});
-	
-	if(this.stage == 2)
-	{
-		/*let headers 	: any		= new HttpHeaders();
-	  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-         let  options 	: any		= { "q":this.message};
-       let    url       : any      	= "http://hrsenterprises.in/kisan/api.php";
+ stage = 1;
 
-      this.http.post(url, JSON.stringify(options),headers).subscribe((data) =>
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
+  }
+
+ 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ChatPage');
+    this. receiveMessage();
+  };
+
+
+//**********************************************************
+
+
+ sendMessage(){
+//if(this.message==""){ this.message = ''; }
+
+
+
+	  this.messages.push({
+			msg: this.message,owner: 'user', username:""
+
+	});
+
+this.sendData(this.message,'','','', this.stage);
+	  
+	this.message = '';
+	this.username = '';
+
+
+ }
+
+
+
+
+ sendData(_a,_b,_c,_r,_s) /// for sending data to database
+  {
+
+  	
+
+//////////////////////////////////////////////////////////////////
+$("#loader").show();
+	  let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
+          options 	: any		= { "q":_a, "b":_b, "r":_r,"l":"en","s":_s  },
+          url       : any      	= "http://hrsenterprises.in/kisan-api/webservice.php";
+
+          //http://localhost/php/kisan/ionic/php/webservice.php
+
+      this.http.post(url, JSON.stringify(options), headers)
+      .subscribe((data : any) =>
       {
-        console.log(data);
-		this.messages.push({
-			msg:data,
-			owner: 'Bot'
-		});
-        console.log("enter successfully");
+         // If the request was successful notify the user
+         
+        // this.sendNotification(`Congratulations the technology: ${name} was successfully added`);
+
+$("#loader").hide();
+        this.messages.push({
+					msg:data.ans,owner: 'Bot',username:"-", stage : data.stage, button:data.button1
+				});
+
+			this.stage = data.stage;
+			this.button = data.button1;
+
+ // scrolling upside//
+       var  boxHeight = $("#chatMessages").height();
+        $("#wrapper").animate({ scrollTop:boxHeight }, 1000); 
+
+			console.log("enter successfully");
+
       },
-      (error) =>
+      (error : any) =>
       {
         // this.sendNotification('Something went wrong!');
         console.log("error");
       });
-	  */
-	  this.http.post("http://hrsenterprises.in/kisan/api.php", "q="+this.message).subscribe(data => {
-			console.log(data);
-		}, error => {
-			console.log(error);
-		});
-	}
-	this.message = '';
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatPage');
-  }
-  botqueries()
-  {
-	  if(this.stage == 1)
-	  {
-		this.http.get('http://hrsenterprises.in/kisan/api.php?step=1&lang=en').map(res => res.json()).subscribe(data => {
-		this.messages.push({
-		msg : data,
-		owner:'bot'
-			});
-		});
-	  
-		this.stage = 2;
-	}	
-  }	
- }
 
+  }
+
+  /////////////////////////////////////////////////////////////////
+
+  receiveMessage():void
+  {
+
+
+	  this.http
+      .get('http://localhost/php/kisan/ionic/response.php')
+      .subscribe((data : any) =>
+      {
+         console.dir(data);
+         
+
+		this.messages.push({
+			msg:  data.email,owner: 'user'
+						});
+
+         
+      },
+      (error : any) =>
+      {
+         console.dir(error);
+      });
+  }
+
+ 
+
+}
