@@ -50,7 +50,7 @@ lang :any;
 
 	});
 
-this.sendData(this.message,'','',this.lang, this.stage);
+this.sendData(this.message,'','','', this.stage,this.lang);
 	  
 	this.message = '';
 	this.username = '';
@@ -61,7 +61,7 @@ this.sendData(this.message,'','',this.lang, this.stage);
 
 
 
- sendData(_a,_b,_c,_r,_s) /// for sending data to database
+ sendData(_a,_b,_c,_r,_s,_l) /// for sending data to database
   {
 
   	
@@ -69,7 +69,7 @@ this.sendData(this.message,'','',this.lang, this.stage);
 //////////////////////////////////////////////////////////////////
 $("#loader").show();
 	  let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-          options 	: any		= { "q":_a, "b":_b, "r":_r,"l":_r,"s":_s  },
+          options 	: any		= { "q":_a, "b":_b, "r":_r,"l":_l,"s":_s  },
           url       : any      	= "http://hrsenterprises.in/kisan-api/webservice.php";
 
           //http://localhost/php/kisan/ionic/php/webservice.php
