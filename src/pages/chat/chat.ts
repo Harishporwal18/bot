@@ -25,8 +25,9 @@ export class ChatPage {
 _chatSubscription;
 
  stage = 1;
-
+lang :any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
+	  this.lang = this.navParams.get('lang');
   }
 
  
@@ -49,7 +50,7 @@ _chatSubscription;
 
 	});
 
-this.sendData(this.message,'','','', this.stage);
+this.sendData(this.message,'','',this.lang, this.stage);
 	  
 	this.message = '';
 	this.username = '';
@@ -68,7 +69,7 @@ this.sendData(this.message,'','','', this.stage);
 //////////////////////////////////////////////////////////////////
 $("#loader").show();
 	  let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-          options 	: any		= { "q":_a, "b":_b, "r":_r,"l":"en","s":_s  },
+          options 	: any		= { "q":_a, "b":_b, "r":_r,"l":_r,"s":_s  },
           url       : any      	= "http://hrsenterprises.in/kisan-api/webservice.php";
 
           //http://localhost/php/kisan/ionic/php/webservice.php

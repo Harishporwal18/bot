@@ -12,9 +12,9 @@ export class HomePage {
 	
   }
 
-  lang($value){
+  lang(lan){
 
-  this.navCtrl.push(ChatPage);
+  this.navCtrl.push(ChatPage,{lang :lan});
   }
 
 }
