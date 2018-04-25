@@ -6,15 +6,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
+import { TabsPage } from '../pages/tabs/tabs';
+import { WeatherPage } from '../pages/weather/weather';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
+import { WeatherProvider } from '../providers/weather/weather';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ChatPage
+    ChatPage,
+	TabsPage,
+	WeatherPage
   ],
   imports: [
     BrowserModule,
@@ -24,12 +30,16 @@ import { HttpModule } from '@angular/http';
   entryComponents: [
     MyApp,
     HomePage,
-    ChatPage
+    ChatPage,
+	TabsPage,
+	WeatherPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    WeatherProvider,
+	Geolocation
   ]
 })
 export class AppModule {}
