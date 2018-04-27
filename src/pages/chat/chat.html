@@ -9,10 +9,7 @@
   <ion-navbar>
     <ion-title>chat</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding >
 <div id="wrapper" style="height: 98%; overflow-y:scroll; ">
 <div id ="chatMessages">
@@ -22,10 +19,9 @@
         <div class="message">{{message.msg}}</div>
       </div>
     </div>
-
+<div class="message" *ngFor="let helpBtn of helpButton[0]" ion-button  >{{helpBtn.name}}</div>
   </div>
 
-  <div class="helpButtons" >{{button }}</div>
 </div>
 <ion-spinner name="dots" id="loader" style="display:none">Loading...</ion-spinner>
 </ion-content>

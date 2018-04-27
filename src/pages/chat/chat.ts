@@ -21,8 +21,9 @@ export class ChatPage {
 	messages :any =[];
 	message:any=[];
 	username ="";
-	button="";
+  helpButton:any=[];
 _chatSubscription;
+helpB:any=[];
 
  stage = 1;
 lang :any;
@@ -83,11 +84,16 @@ $("#loader").show();
 
 $("#loader").hide();
         this.messages.push({
-					msg:data.ans,owner: 'Bot',username:"-", stage : data.stage, button:data.button1
+					msg:data.ans,owner: 'Bot',username:"-", stage : data.stage
 				});
 
 			this.stage = data.stage;
-			this.button = data.button1;
+			if(data.button1 !=""){
+
+    this.helpButton.push(data.button1);
+
+}
+
 
  // scrolling upside//
        var  boxHeight = $("#chatMessages").height();
