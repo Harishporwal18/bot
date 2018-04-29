@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 //import { AngularFirestore } from 'angularfire2/firestore';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import * as $ from "jquery";
+import { DetailPage } from '../detail/detail';
 
 
 /**
@@ -89,7 +90,7 @@ $("#loader").hide();
 
 			this.stage = data.stage;
 			if(data.button1 !=""){
-
+			console.log(data.button1);
     this.helpButton.push(data.button1);
 
 }
@@ -110,6 +111,12 @@ $("#loader").hide();
 
   }
 
+  buttoninfo(id)
+  {
+	  this.navCtrl.push(DetailPage,{
+          id :id
+        });
+  }
   /////////////////////////////////////////////////////////////////
 
   receiveMessage():void

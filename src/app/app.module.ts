@@ -8,10 +8,12 @@ import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WeatherPage } from '../pages/weather/weather';
+import { DetailPage } from '../pages/detail/detail';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
 import { WeatherProvider } from '../providers/weather/weather';
 import { Geolocation } from '@ionic-native/geolocation';
+import { DataProvider } from '../providers/data/data';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     ChatPage,
 	TabsPage,
-	WeatherPage
+	WeatherPage,
+	DetailPage
   ],
   imports: [
     BrowserModule,
@@ -32,14 +35,16 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     ChatPage,
 	TabsPage,
-	WeatherPage
+	WeatherPage,
+	DetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     WeatherProvider,
-	Geolocation
+	Geolocation,
+    DataProvider
   ]
 })
 export class AppModule {}
