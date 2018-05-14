@@ -19,7 +19,7 @@
         <div class="message">{{message.msg}}</div>
       </div>
     </div>
-<div class="message" *ngFor="let helpBtn of helpButton[0]"  (click) ="buttoninfo(helpBtn.id)" ion-button  >{{helpBtn.name}}</div>
+<button class="message" *ngFor="let helpBtn of helpButton[0]"  (click) ="buttoninfo(helpBtn.id)" ion-button full  >{{helpBtn.name}}</button>
   </div>
 
 </div>
